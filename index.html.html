@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>City Group FC</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--celeste:#5BB8F5;--cd:#1e88c7;--cdp:#0a4f7c;--w:#f4f9ff;--gr:#9ab8cf;--dk:#071520;--dkr:#040d14;--ac:#FFD200;--win:#2ecc71;--los:#e74c3c;--drw:#f39c12}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--dkr);color:var(--w);font-family:'Barlow',sans-serif;min-height:100vh}
+header{background:linear-gradient(135deg,var(--cdp) 0%,var(--dkr) 60%);padding:2rem 1.5rem 1.5rem;border-bottom:3px solid var(--celeste);overflow:hidden;position:relative}
+header::after{content:'CITY GROUP';position:absolute;bottom:-15px;right:0;font-family:'Bebas Neue',sans-serif;font-size:6rem;color:rgba(91,184,245,0.05);pointer-events:none;user-select:none}
+.hi{max-width:860px;margin:0 auto;display:flex;align-items:center;gap:1.2rem}
+.esc{width:80px;height:80px;background:linear-gradient(145deg,var(--celeste),var(--cd));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2.4rem;border:3px solid var(--w);flex-shrink:0;animation:glow 3s ease-in-out infinite}
+@keyframes glow{0%,100%{box-shadow:0 0 20px rgba(91,184,245,.4)}50%{box-shadow:0 0 45px rgba(91,184,245,.7)}}
+.ht h1{font-family:'Bebas Neue',sans-serif;font-size:2.8rem;letter-spacing:3px;line-height:1}
+.ht h1 span{color:var(--celeste)}
+.ht p{font-family:'Barlow Condensed',sans-serif;font-size:.9rem;color:var(--gr);letter-spacing:2px;text-transform:uppercase;margin-top:3px}
+.sb{display:flex;gap:.8rem;margin-top:1rem;flex-wrap:wrap}
+.sp{background:rgba(91,184,245,.12);border:1px solid rgba(91,184,245,.3);border-radius:20px;padding:.25rem .9rem;font-family:'Barlow Condensed',sans-serif;font-size:.85rem;letter-spacing:1px;color:var(--celeste)}
+.sp strong{color:var(--w)}
+main{max-width:860px;margin:2rem auto;padding:0 1rem}
+.tabs{display:flex;gap:.3rem;margin-bottom:1.8rem;border-bottom:2px solid rgba(91,184,245,.2)}
+.tb{background:none;border:none;color:var(--gr);font-family:'Barlow Condensed',sans-serif;font-size:1rem;letter-spacing:2px;text-transform:uppercase;padding:.5rem 1rem;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .2s}
+.tb.active{color:var(--celeste);border-bottom-color:var(--celeste)}
+.tb:hover:not(.active){color:var(--w)}
+.tp{display:none}.tp.active{display:block}
+.st{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:3px;color:var(--celeste);margin-bottom:1rem;display:flex;align-items:center;gap:.6rem}
+.st::after{content:'';flex:1;height:1px;background:linear-gradient(to right,rgba(91,184,245,.4),transparent)}
+.pc{background:linear-gradient(135deg,rgba(91,184,245,.07) 0%,rgba(7,21,32,.8) 100%);border:1px solid rgba(91,184,245,.15);border-radius:12px;padding:1rem 1.2rem;margin-bottom:.9rem;animation:si .3s ease}
+@keyframes si{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.pc:hover{border-color:rgba(91,184,245,.35)}
+.ph{display:flex;justify-content:space-between;align-items:center;margin-bottom:.7rem}
+.pm{font-family:'Barlow Condensed',sans-serif;font-size:.8rem;color:var(--gr);letter-spacing:1px;text-transform:uppercase}
+.pt{font-family:'Barlow Condensed',sans-serif;font-size:.75rem;letter-spacing:1px;padding:.15rem .6rem;border-radius:10px;text-transform:uppercase}
+.tl{background:rgba(91,184,245,.2);color:var(--celeste)}.ta{background:rgba(255,210,0,.15);color:var(--ac)}
+.ps{display:flex;align-items:center;justify-content:center;gap:1rem;padding:.5rem 0}
+.en{font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;font-weight:700;flex:1}
+.en.loc{text-align:right;color:var(--celeste)}.en.vis{text-align:left}
+.sb2{display:flex;align-items:center;gap:.35rem;font-family:'Bebas Neue',sans-serif;font-size:2rem}
+.sn{background:rgba(91,184,245,.1);border:1px solid rgba(91,184,245,.25);border-radius:6px;width:44px;height:48px;display:flex;align-items:center;justify-content:center}
+.ss{color:var(--gr);font-size:1.5rem}
+.rb{display:inline-block;font-family:'Bebas Neue',sans-serif;font-size:.9rem;letter-spacing:2px;padding:.12rem .65rem;border-radius:4px;margin-bottom:.5rem}
+.rw{background:rgba(46,204,113,.2);color:var(--win);border:1px solid rgba(46,204,113,.4)}
+.rl{background:rgba(231,76,60,.2);color:var(--los);border:1px solid rgba(231,76,60,.4)}
+.rd{background:rgba(243,156,18,.2);color:var(--drw);border:1px solid rgba(243,156,18,.4)}
+.gl{margin-top:.6rem;padding-top:.6rem;border-top:1px solid rgba(91,184,245,.1);display:flex;flex-wrap:wrap;gap:.35rem;align-items:center}
+.glt{font-family:'Barlow Condensed',sans-serif;letter-spacing:1px;text-transform:uppercase;font-size:.75rem;color:rgba(91,184,245,.6);margin-right:.2rem}
+.gtag{background:rgba(255,210,0,.1);border:1px solid rgba(255,210,0,.25);border-radius:20px;padding:.12rem .6rem;font-size:.8rem;color:#ffe87a;font-family:'Barlow Condensed',sans-serif}
+.pa{display:flex;justify-content:flex-end;margin-top:.7rem}
+.bi{background:none;border:1px solid rgba(91,184,245,.2);color:var(--gr);border-radius:6px;padding:.25rem .65rem;cursor:pointer;font-size:.8rem;transition:all .2s}
+.bi:hover{border-color:var(--los);color:var(--los)}
+.fc{background:rgba(91,184,245,.05);border:1px solid rgba(91,184,245,.2);border-radius:14px;padding:1.4rem}
+.fg{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
+.fgr{display:flex;flex-direction:column;gap:.35rem}
+.fgr.full{grid-column:1/-1}
+label{font-family:'Barlow Condensed',sans-serif;font-size:.8rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--gr)}
+input,select,textarea{background:rgba(7,21,32,.8);border:1px solid rgba(91,184,245,.2);border-radius:8px;color:var(--w);padding:.55rem .8rem;font-family:'Barlow',sans-serif;font-size:.9rem;outline:none;width:100%;transition:border-color .2s}
+input:focus,select:focus,textarea:focus{border-color:var(--celeste)}
+select option{background:#071520}
+.si2{display:flex;gap:.5rem;align-items:center}
+.si2 input{width:65px;text-align:center;font-family:'Bebas Neue',sans-serif;font-size:1.4rem}
+.si2 span{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:var(--gr)}
+.bp{background:linear-gradient(135deg,var(--cd),var(--celeste));border:none;border-radius:8px;color:var(--dk);font-family:'Bebas Neue',sans-serif;font-size:1.05rem;letter-spacing:2px;padding:.65rem 1.8rem;cursor:pointer;transition:all .25s;margin-top:.5rem}
+.bp:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(91,184,245,.35)}
+.bp:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.gt2{width:100%;border-collapse:collapse;font-family:'Barlow Condensed',sans-serif}
+.gt2 th{text-align:left;padding:.65rem .9rem;font-size:.78rem;letter-spacing:2px;text-transform:uppercase;color:var(--celeste);border-bottom:1px solid rgba(91,184,245,.2)}
+.gt2 td{padding:.7rem .9rem;border-bottom:1px solid rgba(91,184,245,.07);font-size:.95rem}
+.gt2 tr:hover td{background:rgba(91,184,245,.05)}
+.rn{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;color:var(--gr)}
+.rn.gold{color:var(--ac)}.rn.silver{color:#c0c0c0}.rn.bronze{color:#cd7f32}
+.gc2{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:var(--celeste)}
+.es{text-align:center;padding:2.5rem 1rem;color:var(--gr)}
+.es .ic{font-size:2.5rem;margin-bottom:.6rem}
+.es p{font-family:'Barlow Condensed',sans-serif;font-size:1rem;letter-spacing:1px}
+/* PIN MODAL */
+.overlay{display:none;position:fixed;inset:0;background:rgba(4,13,20,.85);z-index:100;align-items:center;justify-content:center}
+.overlay.show{display:flex}
+.modal{background:linear-gradient(135deg,rgba(10,79,124,.3),rgba(4,13,20,.95));border:1px solid rgba(91,184,245,.3);border-radius:16px;padding:2rem;width:100%;max-width:340px;text-align:center}
+.modal h2{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:3px;color:var(--celeste);margin-bottom:.4rem}
+.modal p{font-family:'Barlow Condensed',sans-serif;color:var(--gr);font-size:.9rem;letter-spacing:1px;margin-bottom:1.2rem}
+.pin-input{display:flex;gap:.6rem;justify-content:center;margin-bottom:1.2rem}
+.pin-input input{width:52px;height:60px;text-align:center;font-family:'Bebas Neue',sans-serif;font-size:2rem;border-radius:10px;border:2px solid rgba(91,184,245,.3);background:rgba(7,21,32,.9)}
+.pin-input input:focus{border-color:var(--celeste)}
+.pin-error{color:var(--los);font-family:'Barlow Condensed',sans-serif;font-size:.85rem;letter-spacing:1px;min-height:1.2rem;margin-bottom:.5rem}
+/* LOADING */
+.loading{display:flex;align-items:center;justify-content:center;gap:.6rem;padding:2rem;color:var(--gr);font-family:'Barlow Condensed',sans-serif;letter-spacing:1px}
+.spinner{width:20px;height:20px;border:2px solid rgba(91,184,245,.2);border-top-color:var(--celeste);border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.admin-badge{background:rgba(255,210,0,.15);border:1px solid rgba(255,210,0,.3);border-radius:20px;padding:.2rem .8rem;font-family:'Barlow Condensed',sans-serif;font-size:.78rem;letter-spacing:1px;color:var(--ac);cursor:pointer;margin-left:.5rem}
+@media(max-width:550px){.fg{grid-template-columns:1fr}.fgr.full{grid-column:1}.ht h1{font-size:2rem}.esc{width:60px;height:60px;font-size:2rem}}
+</style>
+</head>
+<body>
+
+<!-- PIN MODAL -->
+<div class="overlay" id="pinOverlay">
+  <div class="modal">
+    <h2>🔒 Admin</h2>
+    <p>Ingresá el PIN para cargar partidos</p>
+    <div class="pin-input">
+      <input type="password" maxlength="1" id="p0" inputmode="numeric">
+      <input type="password" maxlength="1" id="p1" inputmode="numeric">
+      <input type="password" maxlength="1" id="p2" inputmode="numeric">
+      <input type="password" maxlength="1" id="p3" inputmode="numeric">
+    </div>
+    <div class="pin-error" id="pinErr"></div>
+    <button class="bp" onclick="checkPin()">Entrar</button>
+    <br><br>
+    <button onclick="closePin()" style="background:none;border:none;color:var(--gr);cursor:pointer;font-family:'Barlow Condensed';letter-spacing:1px;font-size:.9rem">Cancelar</button>
+  </div>
+</div>
+
+<header>
+  <div class="hi">
+    <div class="esc">⚽</div>
+    <div>
+      <div class="ht">
+        <h1><span>City</span> Group</h1>
+        <p>San Nicolás de los Arroyos · Liga3G</p>
+      </div>
+      <div class="sb">
+        <div class="sp">PJ <strong id="sPJ">0</strong></div>
+        <div class="sp">G <strong id="sG">0</strong></div>
+        <div class="sp">E <strong id="sE">0</strong></div>
+        <div class="sp">P <strong id="sP">0</strong></div>
+        <div class="sp">GF <strong id="sGF">0</strong> – GC <strong id="sGC">0</strong></div>
+        <span class="admin-badge" onclick="openPin()" id="adminBtn">🔑 Admin</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="tabs">
+    <button class="tb active" onclick="go('res',this)">Resultados</button>
+    <button class="tb" onclick="go('gol',this)">Goleadores</button>
+    <button class="tb" id="tabCargar" onclick="go('car',this)" style="display:none">+ Cargar</button>
+  </div>
+
+  <!-- RESULTADOS -->
+  <div id="tp-res" class="tp active">
+    <div class="st">Liga3G</div>
+    <div id="pLiga"></div>
+    <div style="margin-top:1.8rem">
+      <div class="st" style="color:var(--ac)">Amistosos</div>
+      <div id="pAmist"></div>
+    </div>
+  </div>
+
+  <!-- GOLEADORES -->
+  <div id="tp-gol" class="tp">
+    <div class="st">Tabla de Goleadores</div>
+    <div id="tGol"></div>
+  </div>
+
+  <!-- CARGAR (solo admin) -->
+  <div id="tp-car" class="tp">
+    <div class="st">Cargar Partido</div>
+    <div class="fc">
+      <div class="fg">
+        <div class="fgr">
+          <label>Tipo</label>
+          <select id="fTipo"><option value="liga">Liga3G</option><option value="amistoso">Amistoso</option></select>
+        </div>
+        <div class="fgr">
+          <label>Fecha</label>
+          <input type="date" id="fFecha">
+        </div>
+        <div class="fgr">
+          <label>Rival</label>
+          <input type="text" id="fRival" placeholder="Nombre del rival">
+        </div>
+        <div class="fgr">
+          <label>Condición</label>
+          <select id="fCond"><option value="local">Local</option><option value="visitante">Visitante</option></select>
+        </div>
+        <div class="fgr full">
+          <label>Resultado</label>
+          <div class="si2">
+            <span id="l1" style="font-family:'Barlow Condensed';font-size:.85rem;color:var(--celeste);min-width:85px">City Group</span>
+            <input type="number" id="fGC" value="0" min="0">
+            <span>–</span>
+            <input type="number" id="fGR" value="0" min="0">
+            <span id="l2" style="font-family:'Barlow Condensed';font-size:.85rem;color:var(--gr);min-width:85px">Rival</span>
+          </div>
+        </div>
+        <div class="fgr full">
+          <label>Goleadores de City Group (uno por línea, ej: "Rodrigo x2")</label>
+          <textarea id="fGolea" rows="3" placeholder="Lucas&#10;Rodrigo x2&#10;Mauro"></textarea>
+        </div>
+      </div>
+      <button class="bp" id="btnGuardar" onclick="cargar()">⚽ Guardar Partido</button>
+    </div>
+  </div>
+</main>
+
+<script>
+// ── CONFIG ──────────────────────────────────────────────
+var PIN = '1234'; // <-- CAMBIÁ ESTE PIN ANTES DE SUBIR
+var STORAGE_KEY = 'citygroup-partidos';
+var isAdmin = false;
+var data = [];
+
+// ── STORAGE (nube compartida) ─────────────────────────
+async function loadData() {
+  showLoading('pLiga');
+  showLoading('pAmist');
+  try {
+    var r = await window.storage.get(STORAGE_KEY, true);
+    data = r ? JSON.parse(r.value) : [];
+  } catch(e) { data = []; }
+  rRes(); rStats();
+}
+
+async function saveData() {
+  try {
+    await window.storage.set(STORAGE_KEY, JSON.stringify(data), true);
+  } catch(e) { alert('Error al guardar. Intentá de nuevo.'); }
+}
+
+function showLoading(id) {
+  document.getElementById(id).innerHTML = '<div class="loading"><div class="spinner"></div> Cargando...</div>';
+}
+
+// ── PIN ───────────────────────────────────────────────
+function openPin() {
+  if(isAdmin){ logout(); return; }
+  document.getElementById('pinOverlay').classList.add('show');
+  document.getElementById('p0').focus();
+  document.getElementById('pinErr').textContent = '';
+  ['p0','p1','p2','p3'].forEach(function(id,i){
+    document.getElementById(id).value='';
+    document.getElementById(id).addEventListener('input', function(){
+      if(this.value && i<3) document.getElementById('p'+(i+1)).focus();
+    });
+    document.getElementById(id).addEventListener('keydown', function(e){
+      if(e.key==='Backspace' && !this.value && i>0) document.getElementById('p'+(i-1)).focus();
+    });
+  });
+}
+function closePin() { document.getElementById('pinOverlay').classList.remove('show'); }
+function checkPin() {
+  var pin = ['p0','p1','p2','p3'].map(function(id){ return document.getElementById(id).value; }).join('');
+  if(pin === PIN) {
+    isAdmin = true;
+    closePin();
+    document.getElementById('tabCargar').style.display = '';
+    document.getElementById('adminBtn').textContent = '✅ Admin (salir)';
+    document.getElementById('adminBtn').style.background = 'rgba(46,204,113,.15)';
+    document.getElementById('adminBtn').style.borderColor = 'rgba(46,204,113,.3)';
+    document.getElementById('adminBtn').style.color = 'var(--win)';
+  } else {
+    document.getElementById('pinErr').textContent = 'PIN incorrecto';
+    ['p0','p1','p2','p3'].forEach(function(id){ document.getElementById(id).value=''; });
+    document.getElementById('p0').focus();
+  }
+}
+function logout() {
+  isAdmin = false;
+  document.getElementById('tabCargar').style.display = 'none';
+  document.getElementById('adminBtn').textContent = '🔑 Admin';
+  document.getElementById('adminBtn').style.background = '';
+  document.getElementById('adminBtn').style.borderColor = '';
+  document.getElementById('adminBtn').style.color = '';
+  var btns = document.querySelectorAll('.tb');
+  go('res', btns[0]); btns[2].classList.remove('active');
+}
+
+// ── TABS ──────────────────────────────────────────────
+function go(tab, btn) {
+  document.querySelectorAll('.tp').forEach(function(p){ p.classList.remove('active'); });
+  document.querySelectorAll('.tb').forEach(function(b){ b.classList.remove('active'); });
+  document.getElementById('tp-'+tab).classList.add('active');
+  btn.classList.add('active');
+  if(tab==='gol') rGol();
+  if(tab==='res') rRes();
+}
+
+// ── LABELS ────────────────────────────────────────────
+document.getElementById('fRival').addEventListener('input', upLbl);
+document.getElementById('fCond').addEventListener('change', upLbl);
+function upLbl() {
+  var rv = document.getElementById('fRival').value||'Rival';
+  var cd = document.getElementById('fCond').value;
+  if(cd==='local'){
+    document.getElementById('l1').textContent='City Group'; document.getElementById('l1').style.color='var(--celeste)';
+    document.getElementById('l2').textContent=rv; document.getElementById('l2').style.color='var(--gr)';
+  } else {
+    document.getElementById('l1').textContent=rv; document.getElementById('l1').style.color='var(--gr)';
+    document.getElementById('l2').textContent='City Group'; document.getElementById('l2').style.color='var(--celeste)';
+  }
+}
+
+// ── CARGAR ────────────────────────────────────────────
+async function cargar() {
+  var tipo = document.getElementById('fTipo').value;
+  var fecha = document.getElementById('fFecha').value;
+  var rival = document.getElementById('fRival').value.trim();
+  var cond = document.getElementById('fCond').value;
+  var gc = parseInt(document.getElementById('fGC').value)||0;
+  var gr = parseInt(document.getElementById('fGR').value)||0;
+  var raw = document.getElementById('fGolea').value.trim();
+  if(!fecha||!rival){ alert('Completá la fecha y el rival.'); return; }
+  var goles = raw ? raw.split('\n').map(function(g){ return g.trim(); }).filter(Boolean) : [];
+  var btn = document.getElementById('btnGuardar');
+  btn.disabled = true; btn.textContent = 'Guardando...';
+  data.unshift({id:Date.now(),tipo:tipo,fecha:fecha,rival:rival,cond:cond,gc:gc,gr:gr,goles:goles});
+  await saveData();
+  btn.disabled = false; btn.textContent = '⚽ Guardar Partido';
+  document.getElementById('fRival').value='';
+  document.getElementById('fGC').value=0; document.getElementById('fGR').value=0;
+  document.getElementById('fGolea').value=''; upLbl();
+  var btns = document.querySelectorAll('.tb');
+  go('res', btns[0]); btns[2].classList.remove('active');
+  rStats();
+}
+
+// ── RENDER ────────────────────────────────────────────
+function getRes(p) {
+  var a=p.cond==='local'?p.gc:p.gr, b=p.cond==='local'?p.gr:p.gc;
+  return a>b?'win':a<b?'loss':'draw';
+}
+function rPartido(p) {
+  var res=getRes(p);
+  var bt={win:'VICTORIA',loss:'DERROTA',draw:'EMPATE'}[res];
+  var bc={win:'rw',loss:'rl',draw:'rd'}[res];
+  var tc=p.tipo==='liga'?'tl':'ta', tl=p.tipo==='liga'?'⚽ Liga3G':'🤝 Amistoso';
+  var d=new Date(p.fecha+'T12:00:00').toLocaleDateString('es-AR',{weekday:'long',day:'numeric',month:'long'});
+  var n1, n2, g1, g2;
+  if(p.cond==='local'){
+    n1='City Group'; n2=p.rival; g1=p.gc; g2=p.gr;
+  } else {
+    n1=p.rival; n2='City Group'; g1=p.gr; g2=p.gc;
+  }
+  var tags=p.goles.map(function(g){ return '<span class="gtag">⚽ '+g+'</span>'; }).join('');
+  var delBtn = isAdmin ? '<div class="pa"><button class="bi" onclick="del('+p.id+')">🗑 Eliminar</button></div>' : '';
+  return '<div class="pc">'+
+    '<div class="ph"><span class="pm">'+d+'</span><span class="pt '+tc+'">'+tl+'</span></div>'+
+    '<div style="text-align:center"><span class="rb '+bc+'">'+bt+'</span></div>'+
+    '<div class="ps"><div class="en loc">'+n1+'</div>'+
+    '<div class="sb2"><div class="sn">'+g1+'</div><span class="ss">–</span><div class="sn">'+g2+'</div></div>'+
+    '<div class="en vis">'+n2+'</div></div>'+
+    (p.goles.length?'<div class="gl"><span class="glt">Goles:</span>'+tags+'</div>':'')+
+    delBtn+'</div>';
+}
+function rRes() {
+  var liga=data.filter(function(p){ return p.tipo==='liga'; });
+  var amist=data.filter(function(p){ return p.tipo==='amistoso'; });
+  document.getElementById('pLiga').innerHTML=liga.length?liga.map(rPartido).join(''):'<div class="es"><div class="ic">📋</div><p>Sin partidos de liga cargados</p></div>';
+  document.getElementById('pAmist').innerHTML=amist.length?amist.map(rPartido).join(''):'<div class="es"><div class="ic">🤝</div><p>Sin amistosos cargados</p></div>';
+}
+async function del(id) {
+  if(!confirm('¿Eliminar este partido?')) return;
+  data=data.filter(function(p){ return p.id!==id; });
+  await saveData(); rRes(); rStats();
+}
+function rGol() {
+  var map={};
+  data.forEach(function(p){ p.goles.forEach(function(g){
+    var m=g.match(/^(.+?)(?:\s+x(\d+))?$/i); if(!m) return;
+    var n=m[1].trim(), c=parseInt(m[2]||'1');
+    map[n]=(map[n]||0)+c;
+  });});
+  var sorted=Object.keys(map).map(function(k){ return[k,map[k]]; }).sort(function(a,b){ return b[1]-a[1]; });
+  var el=document.getElementById('tGol');
+  if(!sorted.length){ el.innerHTML='<div class="es"><div class="ic">🥅</div><p>Sin goleadores registrados</p></div>'; return; }
+  var ranks=['gold','silver','bronze'];
+  el.innerHTML='<table class="gt2"><thead><tr><th>#</th><th>Jugador</th><th>⚽ Goles</th></tr></thead><tbody>'+
+    sorted.map(function(item,i){ return '<tr><td><span class="rn '+(ranks[i]||'')+'">#'+(i+1)+'</span></td><td style="font-weight:600">'+item[0]+'</td><td><span class="gc2">'+item[1]+'</span></td></tr>'; }).join('')+
+  '</tbody></table>';
+}
+function rStats() {
+  var G=0,E=0,P=0,gf=0,gc=0;
+  data.forEach(function(p){ gf+=p.gc; gc+=p.gr; var r=getRes(p); if(r==='win')G++;else if(r==='draw')E++;else P++; });
+  document.getElementById('sPJ').textContent=data.length;
+  document.getElementById('sG').textContent=G; document.getElementById('sE').textContent=E; document.getElementById('sP').textContent=P;
+  document.getElementById('sGF').textContent=gf; document.getElementById('sGC').textContent=gc;
+}
+
+// ── INIT ──────────────────────────────────────────────
+loadData();
+document.getElementById('fFecha').value=new Date().toISOString().split('T')[0];
+</script>
+</body>
+</html>
